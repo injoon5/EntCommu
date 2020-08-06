@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EntCommu</title>
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <div class="top-bar">
+    <a class="back" href="/" style="color: #007eff; font-size: 1.1rem;">&#xE000; 목록</a>
+  </div>
+  <main>
+    <div class="read">
+      <h2><%= post.title %></h2>
+      <span style="color: rgba(60, 60, 67, 0.6);">by <a style="color: #007eff;" href="/user/<%= post.user.username %>"><%= post.user.username %></a></span>
+      <hr>
+      <% for (let i of post.images) { %>
+      <img style="width: 100%;" src="https://playentry.org/<%= i.imageUrl %>">
+      <% } %>
+      <div class="content"></div>
+      <hr style="margin-top: 1rem;">
+      <h3 style="margin: 0 0 .5rem 0;">댓글 <span style="color: #007eff;"><%= comments.length %></span>개</h3>
+      <div class="comments">
+        <% for (let i of comments) { %>
+          <div class="comment"><a style="color: #007eff;" href="/user/<%= i.user.username %>"><%= i.user.username %></a> <%= i.content %></div>
+        <% } %>
+      </div>
+    </div>
+  </main>
+  <wa-sans><%= post.content %></wa-sans>
+  <script src="https://cdn.jsdelivr.net/gh/bryanwoods/autolink-js@1.0.2/autolink.js"></script>
+  <script>
+    document.querySelector('.read .content').innerHTML = document.querySelector('wa-sans').innerHTML.replace(/\n/gi, '<br>').autoLink({ target: '_blank' })
+    document.querySelector('wa-sans').remove()
+  </script>
+</body>
+</html>

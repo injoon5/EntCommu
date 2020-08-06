@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EntCommu</title>
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <header>
+    <div class="title">
+      <h1>EntCommu</h1>
+      <p>v0.1</p>
+    </div>
+  </header>
+  <main>
+    <% for (let i of posts) { %>
+    <a class="post" href="/post/<%= i._id %>">
+      <img src="https://playentry.org/uploads/profile/<%= i.user._id.substr(0, 2) %>/<%= i.user._id.substr(2, 2) %>/avatar_<%= i.user._id %>.png" onerror="this.src='https:\/\/playentry.org/img/assets/avatar_img.png'">
+      <div class="info">
+        <span class="title"><%= i.title %></span>
+        <span class="writer"><%= i.user.username %></span>
+      </div>
+    </a>
+    <% } %>
+  </main>
+  <span></span>
+  <script src="index.js"></script>
+</body>
+</html>
